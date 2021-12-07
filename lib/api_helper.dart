@@ -28,7 +28,8 @@ class ApiHelper {
 
   static Future getNewsByCategory(String category) async {
     http.Response response = await http.get(
-        Uri.parse('$baseUrl/top-headlines?category=${category.toLowerCase()}'),
+        Uri.parse(
+            '$baseUrl/top-headlines?category=${category.toLowerCase()}&country=ng'),
         headers: {'Authorization': apiKey});
 
     return response;

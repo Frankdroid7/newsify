@@ -67,7 +67,7 @@ class HeadlineWidget extends StatelessWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
-                  fontSize: 21,
+                  fontSize: 18,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),

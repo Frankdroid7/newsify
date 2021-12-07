@@ -1,10 +1,9 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:lottie/lottie.dart';
-import 'package:http/http.dart' as http;
+import 'package:newsify/constants.dart';
 import 'package:newsify/models/headline_model.dart';
+import 'package:newsify/viewmodels/search_screen_viewmodel.dart';
 import 'package:newsify/widgets/headline_widget.dart';
 
 import '../api_helper.dart';
@@ -25,20 +24,6 @@ class _SearchScreenState extends State<SearchScreen> {
   Future? searchNewsFuture;
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
-  Future searchForNews(String str) async {
-    List<HeadlineModel>? headlineModelList = [];
-    http.Response response = await ApiHelper.searchNews(str);
-
-    if (response.statusCode == 200) {
-      final List responseBody = jsonDecode(response.body)['articles'];
-
-      for (var json in responseBody) {
-        headlineModelList.add(HeadlineModel.fromJson(json));
-      }
-    }
-    return headlineModelList;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +46,8 @@ class _SearchScreenState extends State<SearchScreen> {
                         onChanged: (value) => queryStr = value,
                         decoration: InputDecoration(
                           hintText: 'Search News',
-                          border: OutlineInputBorder(),
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(color: primaryColor)),
                         ),
                       ),
                     ),
@@ -83,7 +69,8 @@ class _SearchScreenState extends State<SearchScreen> {
                         if (formKey.currentState!.validate()) {
                           setState(() {
                             searchNews = true;
-                            searchNewsFuture = searchForNews(queryStr);
+                            searchNewsFuture =
+                                SearchScreenViewModel.searchForNews(queryStr);
                           });
                         }
                       },

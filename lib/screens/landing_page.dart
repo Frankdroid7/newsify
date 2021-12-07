@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:newsify/screens/category_screen.dart';
 import 'package:newsify/screens/home_screen.dart';
 import 'package:newsify/screens/saved_screen.dart';
@@ -19,6 +20,12 @@ class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        toolbarHeight: 5,
+        backgroundColor: Colors.transparent,
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
+      ),
       body: _listOfWidgets.elementAt(_currentBottomNavIndex),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: primaryColor,
