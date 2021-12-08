@@ -10,6 +10,7 @@ import 'package:newsify/viewmodels/home_screen_viewmodel.dart';
 import 'package:newsify/widgets/headline_widget.dart';
 
 import '../constants.dart';
+import '../utils.dart';
 import 'news_details_page.dart';
 
 // ignore_for_file: prefer_const_constructors
@@ -21,8 +22,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final String todays_Date = DateFormat.yMMMMEEEEd().format(DateTime.now());
-
   late Future<List<HeadlineModel>> topHeadlinesFuture;
   late Future<List<HeadlineModel>> generalNewsFuture;
 
@@ -43,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              todays_Date,
+              Utils.todays_Date,
               style: TextStyle(fontSize: 18),
             ),
             Text(
